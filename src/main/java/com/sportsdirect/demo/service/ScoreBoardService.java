@@ -1,19 +1,14 @@
-package com.sportsdirect.demo;
+package com.sportsdirect.demo.service;
 
-import com.sportsdirect.demo.service.ScoreBoardService;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.stereotype.Service;
 
 import java.util.AbstractMap;
-import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@SpringBootTest
-public class ScoreBoardTest {
+@Service
+public class ScoreBoardService {
 
     Map<String, String> matches = Stream.of(
                     new AbstractMap.SimpleEntry<>("Mexico", "Canada"),
@@ -36,19 +31,16 @@ public class ScoreBoardTest {
                     new AbstractMap.SimpleEntry<>("Australia", 4))
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-    @Autowired
-    private ScoreBoardService scoreBoardService;
-
-    @Test
-    public void testStartGame() {
-        // given:
-        Map<Map<String, String>, Map<Integer, Integer>> scoreBoardSummary = scoreBoardService.getScoreBoardSummary();
-        // when:
-        scoreBoardService.startGame("Home Team", "Away Team");
-        // then:
-        Map<Map<String, String>, Map<Integer, Integer>> updatedScoreBoardSummary = scoreBoardService.getScoreBoardSummary();
-        Assertions.assertNotNull(updatedScoreBoardSummary.get(Collections.singletonMap("Home Team", "Away Team")));
+    public Map<Map<String, String>, Map<Integer, Integer>> getScoreBoardSummary() {
+        // TODO: implement
+        // TODO: refactor after implementation
+        return null;
     }
 
+
+    public void startGame(String home_team, String away_team) {
+        // TODO: implement
+        // TODO: refactor after implementation
+    }
 
 }

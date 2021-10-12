@@ -3,6 +3,7 @@ package com.sportsdirect.demo.service;
 import org.springframework.stereotype.Service;
 
 import java.util.AbstractMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,25 +21,36 @@ public class ScoreBoardService {
 
     Map<String, Integer> teamPoints = Stream.of(
                     new AbstractMap.SimpleEntry<>("Mexico", 0),
-                    new AbstractMap.SimpleEntry<>("Spain", 2),
-                    new AbstractMap.SimpleEntry<>("Germany", 4),
-                    new AbstractMap.SimpleEntry<>("Uruguay", 1),
-                    new AbstractMap.SimpleEntry<>("Argentina", 4),
-                    new AbstractMap.SimpleEntry<>("Canada", 3),
-                    new AbstractMap.SimpleEntry<>("Brazil", 3),
-                    new AbstractMap.SimpleEntry<>("France", 1),
-                    new AbstractMap.SimpleEntry<>("Italy", 5),
-                    new AbstractMap.SimpleEntry<>("Australia", 4))
+                    new AbstractMap.SimpleEntry<>("Spain", 10),
+                    new AbstractMap.SimpleEntry<>("Germany", 2),
+                    new AbstractMap.SimpleEntry<>("Uruguay", 6),
+                    new AbstractMap.SimpleEntry<>("Argentina", 3),
+                    new AbstractMap.SimpleEntry<>("Canada", 5),
+                    new AbstractMap.SimpleEntry<>("Brazil", 2),
+                    new AbstractMap.SimpleEntry<>("France", 2),
+                    new AbstractMap.SimpleEntry<>("Italy", 6),
+                    new AbstractMap.SimpleEntry<>("Australia", 1))
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-    public Map<Map<String, String>, Map<Integer, Integer>> getScoreBoardSummary() {
-        // TODO: implement
+    public Map<String, String> getScoreBoardSummary() {
         // TODO: refactor after implementation
-        return null;
+
+        Map<String, String> summary = new HashMap<>();
+
+        for (Map.Entry<String, String> matchEntry : matches.entrySet()) {
+            String firstTeam = matchEntry.getKey();
+            String secondTeam = matchEntry.getValue();
+
+            String firstTeamWithScore = firstTeam + " " + teamPoints.get(firstTeam);
+            String secondTeamWithScore = firstTeam + " " + teamPoints.get(secondTeam);
+
+            summary.put(firstTeamWithScore, secondTeamWithScore);
+        }
+
+        return summary;
     }
 
-
-    public void startGame(String home_team, String away_team) {
+    public void startGame(String homeТeam, String awayТeam) {
         // TODO: implement
         // TODO: refactor after implementation
     }

@@ -85,4 +85,14 @@ public class ScoreBoardTest {
         Assertions.assertEquals(scoreBoardService.getTeamPoints(awayTeam), 6);
     }
 
+    @Test
+    public void testGetSummaryByTotalScore() {
+        // given:
+        // when: getting the summary sorted
+        Map<String, String> scoreBoardSummary = scoreBoardService.getScoreBoardSummaryByTotalScore();
+
+        // then:
+        Assertions.assertEquals(scoreBoardSummary.keySet().iterator().next(), "Uruguay 6");
+    }
+
 }

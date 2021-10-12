@@ -42,7 +42,7 @@ public class ScoreBoardService {
             String secondTeam = matchEntry.getValue();
 
             String firstTeamWithScore = firstTeam + " " + teamPoints.get(firstTeam);
-            String secondTeamWithScore = firstTeam + " " + teamPoints.get(secondTeam);
+            String secondTeamWithScore = secondTeam + " " + teamPoints.get(secondTeam);
 
             summary.put(firstTeamWithScore, secondTeamWithScore);
         }

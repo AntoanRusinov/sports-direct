@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Collections;
 import java.util.Map;
 
 @SpringBootTest
@@ -22,13 +21,18 @@ public class ScoreBoardTest {
         Assertions.assertNotNull(scoreBoardSummary);
 
         // when:
-        scoreBoardService.startGame("Home Team", "Away Team");
+        String homeTeam = "Russia";
+        String awayTeam = "Belgium";
+        scoreBoardService.startGame(homeTeam, awayTeam);
 
         // then:
-//        Map<Map<String, String>, Map<Integer, Integer>> updatedScoreBoardSummary = scoreBoardService.getScoreBoardSummary();
-//        Map<Integer, Integer> result = updatedScoreBoardSummary.get((Collections.singletonMap("Home Team", "Away Team")));
-//        Assertions.assertNotNull(result);
-//        Assertions.assertEquals(0, (int) result.get(0));
+        Integer homeTeamPoints = scoreBoardService.getTeamPoints(homeTeam);
+        Assertions.assertNotNull(homeTeamPoints);
+        Assertions.assertEquals(0, (int) homeTeamPoints);
+
+        Integer awayTeamPoints = scoreBoardService.getTeamPoints(homeTeam);
+        Assertions.assertNotNull(awayTeamPoints);
+        Assertions.assertEquals(0, (int) awayTeamPoints);
     }
 
 }

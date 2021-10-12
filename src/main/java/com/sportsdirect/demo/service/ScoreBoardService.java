@@ -51,8 +51,14 @@ public class ScoreBoardService {
     }
 
     public void startGame(String homeТeam, String awayТeam) {
-        // TODO: implement
         // TODO: refactor after implementation
+        matches.put(homeТeam, awayТeam);
+        teamPoints.put(homeТeam, 0);
+        teamPoints.put(awayТeam, 0);
+    }
+
+    public Integer getTeamPoints(String teamName) {
+        return teamPoints.get(teamName);
     }
 
 }

@@ -71,4 +71,9 @@ public class ScoreBoardService {
         teamPoints.remove(awayTeam);
     }
 
+    public void updateScore(Map<Map<String, Integer>, Map<String, Integer>> matchWithScore) {
+        // TODO: add implementation
+        // TODO: refactor after implementation
+    }
+
 }

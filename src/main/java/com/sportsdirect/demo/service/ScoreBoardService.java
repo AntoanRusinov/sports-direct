@@ -51,7 +51,6 @@ public class ScoreBoardService {
     }
 
     public void startGame(String homeTeam, String awayTeam) {
-        // TODO: refactor after implementation
         matches.put(homeTeam, awayTeam);
         teamPoints.put(homeTeam, 0);
         teamPoints.put(awayTeam, 0);
@@ -72,7 +71,6 @@ public class ScoreBoardService {
     }
 
     public void updateScore(Map<Map<String, Integer>, Map<String, Integer>> matchWithScore) {
-        // TODO: refactor after implementation
 
         for (Map.Entry<Map<String, Integer>, Map<String, Integer>> matchEntry : matchWithScore.entrySet()) {
             Map<String, Integer> homeTeam = matchEntry.getKey();
@@ -85,6 +83,12 @@ public class ScoreBoardService {
             teamPoints.put(awayTeamName, awayTeam.get(awayTeamName));
         }
 
+    }
+
+    public Map<String, String> getScoreBoardSummaryByTotalScore() {
+        // TODO: implement
+        // TODO: refactor after implementation
+        return null;
     }
 
 }

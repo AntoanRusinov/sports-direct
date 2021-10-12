@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @SpringBootTest
@@ -31,7 +32,7 @@ public class ScoreBoardTest {
         Assertions.assertNotNull(homeTeamPoints);
         Assertions.assertEquals(0, (int) homeTeamPoints);
 
-        Integer awayTeamPoints = scoreBoardService.getTeamPoints(homeTeam);
+        Integer awayTeamPoints = scoreBoardService.getTeamPoints(awayTeam);
         Assertions.assertNotNull(awayTeamPoints);
         Assertions.assertEquals(0, (int) awayTeamPoints);
     }
@@ -58,10 +59,30 @@ public class ScoreBoardTest {
     @Test
     public void testUpdateScore() {
         // given:
+        String homeTeam = "Mexico";
+        String awayTeam = "Canada";
+
+        Map<String, String> matches = scoreBoardService.getMatches();
+        Assertions.assertNotNull(matches.get(homeTeam));
+
+        Integer homeTeamPoints = scoreBoardService.getTeamPoints(homeTeam);
+        Assertions.assertNotNull(homeTeamPoints);
+        Assertions.assertEquals(0, (int) homeTeamPoints);
+
+        Integer awayTeamPoints = scoreBoardService.getTeamPoints(awayTeam);
+        Assertions.assertNotNull(awayTeamPoints);
+        Assertions.assertEquals(5, (int) awayTeamPoints);
 
         // when:
+        Map<Map<String, Integer>, Map<String, Integer>> matchWithScore = new HashMap<>();
+        matchWithScore.put(Map.of(homeTeam, homeTeamPoints + 1), Map.of(awayTeam, awayTeamPoints + 1));
+        scoreBoardService.updateScore(matchWithScore);
 
         // then:
+        Map<String, String> updatedMatches = scoreBoardService.getMatches();
+        Assertions.assertNotNull(updatedMatches.get(homeTeam));
+        Assertions.assertEquals(scoreBoardService.getTeamPoints(homeTeam), 1);
+        Assertions.assertEquals(scoreBoardService.getTeamPoints(awayTeam), 6);
     }
 
 }

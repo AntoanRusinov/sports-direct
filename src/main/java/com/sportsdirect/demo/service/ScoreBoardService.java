@@ -72,8 +72,19 @@ public class ScoreBoardService {
     }
 
     public void updateScore(Map<Map<String, Integer>, Map<String, Integer>> matchWithScore) {
-        // TODO: add implementation
         // TODO: refactor after implementation
+
+        for (Map.Entry<Map<String, Integer>, Map<String, Integer>> matchEntry : matchWithScore.entrySet()) {
+            Map<String, Integer> homeTeam = matchEntry.getKey();
+            Map<String, Integer> awayTeam = matchEntry.getValue();
+
+            String homeTeamName = homeTeam.keySet().iterator().next();
+            teamPoints.put(homeTeamName, homeTeam.get(homeTeamName));
+
+            String awayTeamName = awayTeam.keySet().iterator().next();
+            teamPoints.put(awayTeamName, awayTeam.get(awayTeamName));
+        }
+
     }
 
 }

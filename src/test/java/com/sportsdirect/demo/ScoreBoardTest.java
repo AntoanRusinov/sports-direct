@@ -35,4 +35,24 @@ public class ScoreBoardTest {
         Assertions.assertEquals(0, (int) awayTeamPoints);
     }
 
+    @Test
+    public void testFinishGame() {
+        // given:
+
+        String homeTeam = "Russia";
+        String awayTeam = "Belgium";
+
+        Map<String, String> matches = scoreBoardService.getMatches();
+        Assertions.assertNotNull(matches.get(homeTeam));
+
+        // when:
+        scoreBoardService.finishMatch(homeTeam, awayTeam);
+
+        // then:
+        Map<String, String> updatedMatches = scoreBoardService.getMatches();
+        Assertions.assertNull(matches.get(homeTeam));
+        Assertions.assertNull(scoreBoardService.getTeamPoints(homeTeam));
+        Assertions.assertNull(scoreBoardService.getTeamPoints(awayTeam));
+    }
+
 }

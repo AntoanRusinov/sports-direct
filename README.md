@@ -26,3 +26,10 @@ The app is built at that point.
 Contributions, issues, and feature requests are welcome!
 
 Give a ⭐️if you like this project!
+
+## TODO's
+
+- Corner cases should be covered as well
+- Exception handling should be added
+- Refactoring must be made regarding optimization
+- testGetSummaryByTotalScore() test should be changed after the implementation of getScoreBoardSummaryByTotalScore() is added

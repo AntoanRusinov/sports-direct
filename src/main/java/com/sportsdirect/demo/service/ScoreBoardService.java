@@ -50,15 +50,25 @@ public class ScoreBoardService {
         return summary;
     }
 
-    public void startGame(String homeТeam, String awayТeam) {
+    public void startGame(String homeTeam, String awayTeam) {
         // TODO: refactor after implementation
-        matches.put(homeТeam, awayТeam);
-        teamPoints.put(homeТeam, 0);
-        teamPoints.put(awayТeam, 0);
+        matches.put(homeTeam, awayTeam);
+        teamPoints.put(homeTeam, 0);
+        teamPoints.put(awayTeam, 0);
     }
 
     public Integer getTeamPoints(String teamName) {
         return teamPoints.get(teamName);
+    }
+
+    public Map<String, String> getMatches() {
+        return matches;
+    }
+
+    public void finishMatch(String homeTeam, String awayTeam) {
+        matches.remove(homeTeam);
+        teamPoints.remove(homeTeam);
+        teamPoints.remove(awayTeam);
     }
 
 }

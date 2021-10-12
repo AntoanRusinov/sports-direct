@@ -1,5 +1,6 @@
 package com.sportsdirect.demo;
 
+import com.github.javafaker.Faker;
 import com.sportsdirect.demo.service.ScoreBoardService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -21,8 +22,8 @@ public class ScoreBoardTest {
         Assertions.assertNotNull(scoreBoardSummary);
 
         // when:
-        String homeTeam = "Russia";
-        String awayTeam = "Belgium";
+        String homeTeam = Faker.instance().team().name();
+        String awayTeam = Faker.instance().team().name();
         scoreBoardService.startGame(homeTeam, awayTeam);
 
         // then:
@@ -38,9 +39,8 @@ public class ScoreBoardTest {
     @Test
     public void testFinishGame() {
         // given:
-
-        String homeTeam = "Russia";
-        String awayTeam = "Belgium";
+        String homeTeam = "Mexico";
+        String awayTeam = "Canada";
 
         Map<String, String> matches = scoreBoardService.getMatches();
         Assertions.assertNotNull(matches.get(homeTeam));
@@ -50,9 +50,18 @@ public class ScoreBoardTest {
 
         // then:
         Map<String, String> updatedMatches = scoreBoardService.getMatches();
-        Assertions.assertNull(matches.get(homeTeam));
+        Assertions.assertNull(updatedMatches.get(homeTeam));
         Assertions.assertNull(scoreBoardService.getTeamPoints(homeTeam));
         Assertions.assertNull(scoreBoardService.getTeamPoints(awayTeam));
+    }
+
+    @Test
+    public void testUpdateScore() {
+        // given:
+
+        // when:
+
+        // then:
     }
 
 }
